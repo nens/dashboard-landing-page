@@ -35,7 +35,7 @@ class App extends Component {
       () => {
         that.setState({
           fetchSlugs: "RECEIVED",
-          dashboardSlugs: ["tom1","scenario1","dashboard2"],
+          dashboardSlugs: ["tom1","scenario7","dashboard2"],
         })
         // fetch( "/api/v4/dashboardSlugs/")
         // .then(function(response) {
