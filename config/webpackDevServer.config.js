@@ -58,8 +58,9 @@ if (password && username) {
     PROXY_SETTING[proxy].headers.password = password;
   });
 } else {
-  console.log("Please set PROXY_PASSWORD and PROXY_USERNAME variables!");
-  process.exit(1);
+  console.log("Please note that PROXY_PASSWORD and PROXY_USERNAME variables are not set, continue unauthorized !");
+  // Do not exit the process because we like to test without username password sometimes!
+  // process.exit(1);
 }
 
 

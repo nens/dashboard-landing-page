@@ -11,6 +11,10 @@ Above that is all information specific to this repo.
 ### `./start`
 
 Will prompt for username password and use "npm start" to run the app.  
+Or run "npm start" directly to test unauthorized:  
+
+### `npm start`  
+
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
