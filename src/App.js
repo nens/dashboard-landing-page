@@ -66,7 +66,7 @@ class App extends Component {
         title: dashboardJSON.configuration.meta.title,
         description: dashboardJSON.configuration.meta.description,
         tags: dashboardJSON.configuration.meta.tags,
-        metaData: dashboardJSON.configuration.meta.metaData,
+        metadata: dashboardJSON.configuration.meta.metadata,
         logo: dashboardJSON.configuration.meta.logo,
         logoCompanies: dashboardJSON.configuration.meta.logoCompanies,
       }
@@ -176,7 +176,7 @@ class App extends Component {
               {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
               <p>{dashboard.description || ""}</p>
               <p>{dashboard.tags || ""}</p>
-              <p>{dashboard.metaData || ""}</p>
+              <p>{dashboard.metadata || ""}</p>
               {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
             </div>
           )

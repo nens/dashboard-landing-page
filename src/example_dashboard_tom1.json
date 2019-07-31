@@ -1,0 +1,178 @@
+{
+  "tiles":[
+     {
+        "wmsLayers":[
+           {
+              "layers":"s0175_ijgenzon:s0175_debieten_meetlocaties",
+              "format":"image/png",
+              "url":"https://maps1.project.lizard.net/geoserver/s0175_ijgenzon/wms?&SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.11",
+              "height":256,
+              "zindex":1009,
+              "width":256,
+              "srs":"EPSG:3857",
+              "transparent":true
+           }
+        ],
+        "extraLegends":[
+           {
+              "steps":[
+                 {
+                    "color":"red",
+                    "text":"text for red"
+                 },
+                 {
+                    "color":"#FF00FF",
+                    "text":"text for purple"
+                 }
+              ]
+           }
+        ],
+        "shortTitle":"Hoogte en debieten tom1",
+        "title":"Hoogte en debieten tom1",
+        "viewInLizardLink":"https://ijgenzon.lizard.net/nl/map/neutral,raster$1d65a4e,wmslayer$403a7a0c/point@52.7271,5.8951,9/-5Days1Hours+1Days0Hours",
+        "renderAsImage":false,
+        "bbox_same_as_portal_":[
+           "4.562668790367655",
+           "51.941318146188465",
+           "7.227498375212766",
+           "53.49891763395444"
+        ],
+        "type":"map",
+        "id":1
+     },
+     {
+        "wmsLayers":[
+           {
+              "layers":"s0213_hhnk_gemalen_status",
+              "format":"image/png",
+              "url":"https://maps1.project.lizard.net/geoserver/s0213_hhnk_indicatoren/wms?&SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.11",
+              "height":256,
+              "zindex":1009,
+              "width":256,
+              "srs":"EPSG:3857",
+              "transparent":true
+           }
+        ],
+        "shortTitle":"Actuele gemaalstatus",
+        "title":"Gemaalstatus",
+        "datetime":{
+           "to":"now",
+           "type":"relative",
+           "offset":0
+        },
+        "viewInLizardLink":"https://hhnk.lizard.net/favourites/d2eace01-1b37-43fd-a20e-44ae50845dff",
+        "bbox":[
+           "4.445343",
+           "52.450988",
+           "5.328369",
+           "53.132766"
+        ],
+        "type":"map",
+        "id":3
+     },
+     {
+        "title":"Gebiedsregelingen",
+        "url":"https://docs.google.com/document/d/e/2PACX-1vQQ8yDJlDJkyY87n6-19Z2xdcJcUWBza9nL01zzsOjIXP2RMB5IbqEIcbfPSAsO5ZINw7Ix79o-sls_/pub",
+        "imageUrl":"",
+        "renderAsImage":false,
+        "viewInLizardLink":"https://gebiedsregelinghhnk.lizard.net/",
+        "type":"external",
+        "id":7
+     },
+     {
+        "title":"ARK-NZK",
+        "url":"https://waterberichtgeving.rws.nl/include_files/dynamisch/iwp_extern/Status_NZK-ARK.png",
+        "imageUrl":"https://waterberichtgeving.rws.nl/include_files/dynamisch/iwp_extern/Status_NZK-ARK.png",
+        "renderAsImage":true,
+        "type":"external",
+        "id":10
+     },
+     {
+        "title":"ControlNEXT",
+        "url":"https://hhnk.lizard.net/media/hhnk/HHNK_Boezemregelingen.png",
+        "imageUrl":"https://hhnk.lizard.net/media/hhnk/HHNK_Boezemregelingen.png",
+        "renderAsImage":true,
+        "viewInLizardLink":"https://gebiedsregelinghhnk.lizard.net/",
+        "type":"external",
+        "id":6
+     },
+     {
+        "title":"Neerslagradar",
+        "url":"https://nationaleregenradar.nl/images/radar.gif",
+        "imageUrl":"https://nationaleregenradar.nl/images/radar.gif",
+        "viewInLizardLink":"https://hhnk.lizard.net/nl/map/neutral,raster$730d6675/point/@52.8044,4.5016,9/-1Days16Hours+0Days10Hours",
+        "renderAsImage":true,
+        "type":"external",
+        "id":9
+     },
+     {
+        "title":"Potentieel neerslagoverschot",
+        "url":"http://cdn.knmi.nl/knmi/map/page/klimatologie/geografische-overzichten/rdev/rdev_geografisch.png",
+        "imageUrl":"http://cdn.knmi.nl/knmi/map/page/klimatologie/geografische-overzichten/rdev/rdev_geografisch.png",
+        "renderAsImage":true,
+        "type":"external",
+        "id":5
+     },
+     {
+        "title":"Wateraanvoer IJGenZON",
+        "url":"https://ijgenzon.lizard.net/media/ijgenzon/ijgenzon_debiet3.png",
+        "imageUrl":"https://ijgenzon.lizard.net/media/ijgenzon/ijgenzon_debiet3.png",
+        "renderAsImage":true,
+        "type":"external",
+        "id":4
+     },
+     {
+        "title":"Google Docs demo",
+        "url":"https://docs.google.com/spreadsheets/d/1cd4qRak3wzL5i-HGGtTKCLlJXfdTT6LLPev5Z2ExCpA/edit#gid=0",
+        "imageUrl":"https://sheetsu.com/lp-assets/image/sheetsu_api-without-methods.svg",
+        "renderAsImage":false,
+        "viewInLizardLink":"docs.google.com",
+        "type":"external",
+        "id":2
+     },
+     {
+        "title":"Dummy timeseries tom1",
+        "legendStrings":[
+           "Toongabbie water level"
+        ],
+        "colors":[
+           "#26A7F1",
+           "#000058"
+        ],
+        "timeseries":[
+           "1b7843d"
+        ],
+        "legend":{
+           "bgcolor":"rgba(255, 255, 255, 0.25)",
+           "font":{
+              "family":"Futura, monospace",
+              "size":17,
+              "color":"purple"
+           }
+        },
+        "type":"timeseries",
+        "id":18
+     }
+  ],
+  "meta":{
+     "gridView":{
+        "columnCount":3
+     },
+     "mapBackgrounds":[
+        {
+           "url":"https://{s}.tiles.mapbox.com/v3/nelenschuurmans.l15e647c/{z}/{x}/{y}.png",
+           "description":"Neutral Map"
+        }
+     ],
+     "headerColors":{
+        "bg":"#FF007F",
+        "fg":"#ffffff"
+     },
+     "title":"Tom1 DASHBOARD",
+     "logo":"https://hunzeenaas.lizard.net/media/logos/healogo.png",
+     "description": "Dit is het STAGING dashboard van hunzeenaas. Het is mogelijk hier van allerhande informatie op te schrijven. Neem hier gerust de tijd voor. De programmeur doet dit niet voor je. Die weet gewoon niet wat op te schrijven. De gemiddelde programmeur denkt dat hunzenaas een zeldzaam type haas is. Zodoende.",
+     "tags": "Tags, Haas, Hunze",
+     "metadata": "Zeer metadata",
+     "logoCompanies": "https://hunzeenaas.lizard.net/media/logos/healogo.png"
+  }
+}
