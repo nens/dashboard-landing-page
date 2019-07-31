@@ -52,23 +52,30 @@ class App extends Component {
     }
     //*/
     // We will use the slug instead of the url to make it easy to work with on dev (with the proxy)
-    return dashboardsObject.results.map(dashb=>dashb.slug);
+    // return dashboardsObject.results.map(dashb=>dashb.slug);
+    return dashboardsObject.results;//.results.map(dashb=>dashb.slug);
   }
 
-  getRelevantDashboardDataFromJSON = (dashboardJSONS) => {
-    console.log('dashboardJSONS', dashboardJSONS);
-    return dashboardJSONS.filter(dashboardJSON=>{
-      return dashboardJSON &&
-      dashboardJSON.configuration &&
-      dashboardJSON.configuration.meta
-    }).map(dashboardJSON => {
+  getRelevantDashboardDataFromJSON = (dashboardJSONS, dashboardSlugs) => {
+    console.log('dashboardJSONS', dashboardJSONS, dashboardSlugs);
+    return dashboardJSONS.map((dashboardJSON, i)=>{
       return {
-        title: dashboardJSON.configuration.meta.title,
-        description: dashboardJSON.configuration.meta.description,
-        tags: dashboardJSON.configuration.meta.tags,
-        metadata: dashboardJSON.configuration.meta.metadata,
-        logo: dashboardJSON.configuration.meta.logo,
-        logoCompanies: dashboardJSON.configuration.meta.logoCompanies,
+        json: dashboardJSON,
+        slug: dashboardSlugs[i],
+      }
+    }).filter(dashboardJsonObj=>{
+      return dashboardJsonObj.json &&
+        dashboardJsonObj.json.configuration &&
+        dashboardJsonObj.json.configuration.meta
+    }).map(dashboardJsonObj => {
+      return {
+        title: dashboardJsonObj.json.configuration.meta.title,
+        description: dashboardJsonObj.json.configuration.meta.description,
+        tags: dashboardJsonObj.json.configuration.meta.tags,
+        metadata: dashboardJsonObj.json.configuration.meta.metadata,
+        logo: dashboardJsonObj.json.configuration.meta.logo,
+        logoCompanies: dashboardJsonObj.json.configuration.meta.logoCompanies,
+        slug: dashboardJsonObj.slug,
       }
     })
   }
@@ -86,15 +93,19 @@ class App extends Component {
             results: [
               {
                 slug: "dashboard2",
+                url: "https://nxt3.staging.lizard.net/dashboard/dashboard2",
               },
               {
                 slug: "dashboard",
+                url: "https://nxt3.staging.lizard.net/dashboard/dashboard",
               },
               {
                 slug: "tom1",
+                url: "https://nxt3.staging.lizard.net/dashboard/tom1",
               },
               {
                 slug: "scenario7", // this dashboard actually belongs to parramatta. This is to test for errors
+                url: "https://nxt3.staging.lizard.net/dashboard/scenario7",
               },
             ],
           }),
@@ -119,7 +130,7 @@ class App extends Component {
 
   fetchDashboardJSONS = (slugs) => {
     const that = this;
-    const relativeUrls = slugs.map(slug=>`/bootstrap/${slug}/`);
+    const relativeUrls = slugs.map(slug=>`/bootstrap/${slug.slug}/`);
     const requestPromises = relativeUrls.map(url=> fetch(url));
 
     
@@ -133,7 +144,7 @@ class App extends Component {
           Promise.all(parsedPromises).then(parsedResults => {
             that.setState({
               fetchJSONS: "RECEIVED",
-              dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults) : [],
+              dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults, that.state.dashboardSlugs) : [],
               user: parsedResults && parsedResults[0]  ? parsedResults[0].user : {},
               loginUrl : parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.login  : "",
               logoutUrl: parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.logout : "",
@@ -171,14 +182,25 @@ class App extends Component {
 
         {this.state.dashboardJsons.map(dashboard=>{
           return (
-            <div className="Dashboard">
-              <h1>{dashboard.title || ""}</h1>
-              {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
-              <p>{dashboard.description || ""}</p>
-              <p>{dashboard.tags || ""}</p>
-              <p>{dashboard.metadata || ""}</p>
-              {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
-            </div>
+            <a 
+              className="Dashboard"
+              href={dashboard.slug.url}
+            >
+              <div className="Logo">
+                {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
+              </div>
+              <div className="Info">
+                <h1>{dashboard.title || ""}</h1>
+                <p>{dashboard.description || ""}</p>
+                <div  className="MetaTags">
+                  <span>{dashboard.tags || ""}</span>
+                  <span>{dashboard.metadata || ""}</span>
+                </div>
+              </div>
+              <div  className="Logo LogoCompany">
+                {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
+              </div>
+            </a>
           )
 
         })}

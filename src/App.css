@@ -1,5 +1,16 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  background-color: #E2F9EE;
+}
+
+.Dashboard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+
 }
 
 
