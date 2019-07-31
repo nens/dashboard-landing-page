@@ -1,6 +1,7 @@
 {
   "name": "dashboard-landing-page",
   "version": "1.0.1",
+  "homepage": "/dashboards",
   "private": true,
   "dependencies": {
     "@babel/core": "7.4.3",
