@@ -60,7 +60,8 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "rm -rf dist/*.zip && node scripts/build.js && scripts/makedist.sh",
+    "release": "release-it --verbose",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
@@ -128,5 +129,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "release-it": "^12.3.4"
   }
 }
