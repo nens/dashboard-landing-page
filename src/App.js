@@ -26,6 +26,42 @@ class App extends Component {
     }
   }
 
+  getSlugsFromDashboardsObjectFromAPI= (dashboardsObject) => {
+    // dashboardsJSON is assumed to be in format:
+    /*
+    {
+      results: [
+        {
+          "url": "nxt3.staging.lizard.net/bootstrap/dashboard",
+          "slug": "",
+        },
+        ...
+      ],
+      ...
+    }
+    //*/
+    // We will use the slug instead of the url to make it easy to work with on dev (with the proxy)
+    return dashboardsObject.results.map(dashb=>dashb.slug);
+  }
+
+  getRelevantDashboardDataFromJSON = (dashboardJSONS) => {
+    console.log('dashboardJSONS', dashboardJSONS);
+    return dashboardJSONS.filter(dashboardJSON=>{
+      return dashboardJSON &&
+      dashboardJSON.configuration &&
+      dashboardJSON.configuration.meta
+    }).map(dashboardJSON => {
+      return {
+        title: dashboardJSON.configuration.meta.title,
+        description: dashboardJSON.configuration.meta.description,
+        tags: dashboardJSON.configuration.meta.tags,
+        metaData: dashboardJSON.configuration.meta.metaData,
+        logo: dashboardJSON.configuration.meta.logo,
+        logoCompanies: dashboardJSON.configuration.meta.logoCompanies,
+      }
+    })
+  }
+
   fetchDashboardSlugs = () => {
     const that = this;
     this.setState(
@@ -35,7 +71,22 @@ class App extends Component {
       () => {
         that.setState({
           fetchSlugs: "RECEIVED",
-          dashboardSlugs: ["tom1","scenario7","dashboard2"],
+          dashboardSlugs: that.getSlugsFromDashboardsObjectFromAPI({
+            results: [
+              {
+                slug: "dashboard2",
+              },
+              {
+                slug: "dashboard",
+              },
+              {
+                slug: "tom1",
+              },
+              {
+                slug: "scenario7", // this dashboard actually belongs to parramatta. This is to test for errors
+              },
+            ],
+          }),
         })
         // fetch( "/api/v4/dashboardSlugs/")
         // .then(function(response) {
@@ -44,7 +95,7 @@ class App extends Component {
         // .then(function(parsedJSON) {
         //   that.setState({
         //     fetchSlugs: "RECEIVED",
-        //     dashboardSlugs: parsedJSON ? parsedJSON : [],
+        //     dashboardSlugs: parsedJSON ? that.getSlugsFromDashboardsObjectFromAPI(parsedJSON) : [],
         //   })
         // })
         // .catch(error => {
@@ -58,7 +109,7 @@ class App extends Component {
   fetchDashboardJSONS = (slugs) => {
     const that = this;
     const relativeUrls = slugs.map(slug=>`/bootstrap/${slug}/`);
-    const promises = relativeUrls.map(url=> fetch(url));
+    const requestPromises = relativeUrls.map(url=> fetch(url));
 
     
     this.setState(
@@ -66,11 +117,13 @@ class App extends Component {
         fetchJSONS: "SEND",
       },
       () => {
-        Promise.all(promises).then(promiseResults => {
-          const parsed = promiseResults.map(res=>JSON.parse(res))
-          that.setState({
-            fetchJSONS: "RECEIVED",
-            dashboardJsons: parsed ? parsed : [],
+        Promise.all(requestPromises).then(requestResults => {
+          const parsedPromises = requestResults.map(requestResult => requestResult.json());
+          Promise.all(parsedPromises).then(parsedResults => {
+            that.setState({
+              fetchJSONS: "RECEIVED",
+              dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults) : [],
+            })
           })
         })
       }
