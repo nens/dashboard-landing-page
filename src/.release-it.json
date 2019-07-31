@@ -1,0 +1,14 @@
+{
+  "prompt": {
+    "src": {
+      "status": true
+    }
+  },
+  "github": {
+    "release": true,
+    "assets": "dist/dashboard-landing-page.zip"
+  },
+  "npm": {
+    "publish": false
+  }
+}
