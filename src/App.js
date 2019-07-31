@@ -180,30 +180,72 @@ class App extends Component {
     return (
       <div className="App">
 
-        {this.state.dashboardJsons.map(dashboard=>{
-          return (
-            <a 
-              className="Dashboard"
-              href={dashboard.slug.url}
-            >
-              <div className="Logo">
-                {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
-              </div>
-              <div className="Info">
-                <h1>{dashboard.title || ""}</h1>
-                <p>{dashboard.description || ""}</p>
-                <div  className="MetaTags">
-                  <span>{dashboard.tags || ""}</span>
-                  <span>{dashboard.metadata || ""}</span>
-                </div>
-              </div>
-              <div  className="Logo LogoCompany">
-                {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
-              </div>
-            </a>
-          )
+        <header>
+          <h1>Mijn Dashboards</h1>
+          <span>Login</span>
+        </header>
+        <body>
 
-        })}
+        
+
+          <div className="DashboardList">
+            
+            {this.state.dashboardJsons.map(dashboard=>{
+              return (
+                <a 
+                  className="Dashboard"
+                  href={dashboard.slug.url}
+                >
+                  <div className="Logo">
+                    {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
+                  </div>
+                  <div className="Info">
+                    <h2>{dashboard.title || ""}</h2>
+                    <p>{dashboard.description || ""}</p>
+                    <div  className="MetaTags">
+                      <div>{dashboard.tags || ""}</div>
+                      <span>{dashboard.metadata || ""}</span>
+                    </div>
+                  </div>
+                  <div  className="Logo LogoCompany">
+                    {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
+                  </div>
+                </a>
+              )
+
+            })}
+          </div>
+
+          <div className="ExplainColumn">
+            <article>
+              <h1>
+                Wat is een dashboard?
+              </h1>
+              <p>
+                Wat is het fijn om een dashboard te zijn !
+              </p>
+            </article>
+            
+            <article>
+              <h1>
+                Hoe gebruik ik mijn dashboard?
+              </h1>
+              <p>
+                Wat is het fijn om een dashboard te zijn !
+              </p>
+            </article>
+            
+            <article>
+              <h1>
+                Nog een andere vraag?
+              </h1>
+              <p>
+                Wat is het fijn om een dashboard te zijn !
+              </p>
+            </article>
+          </div>
+        </body>
+        
         {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>

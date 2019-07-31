@@ -1,6 +1,38 @@
+html,
+body,
+.root,
+.App {
+  background-color: #E2F9EE;
+  height: 100%;
+}
+
 .App {
   /* text-align: center; */
-  background-color: #E2F9EE;
+  display: flex;
+  flex-direction: column;
+}
+
+.App header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.App body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.DashboardList {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 75%;
+  flex-shrink: 0;
+}
+
+.App header h1 {
+  color: #115E67
 }
 
 .Dashboard {
@@ -10,8 +42,47 @@
   background-color: white;
   display: flex;
   flex-direction: row;
+  margin-top: 24px;
+}
+
+.Dashboard .Logo {
+  padding: 24px;
+  flex-basis: 25%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.Dashboard .Logo.LogoCompany {
+  padding: 24px;
+  flex-basis: 20%;
+}
+.Dashboard .Logo img {
+  max-width: 100%;
+}
+
+.Dashboard .Info {
+  padding: 10px;
+}
+
+.Dashboard .Info h2 {
+  color: #818181
+}
+
+.App .ExplainColumn {
 
 }
+
+.App .ExplainColumn {
+  background-color: white;
+  margin-top: 24px;
+}
+
+.App .ExplainColumn article {
+  /* background-color: white; */
+  margin-top: 10px;
+  padding: 24px;
+}
+
 
 
 
