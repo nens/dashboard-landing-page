@@ -24,6 +24,16 @@ const PROXY_SETTING = {
       "password": ""
     }
   },
+  "/dashboard/logos": {
+    "target": PROXY_SERVER,
+    "changeOrigin": true,
+    "ssl": false,
+    "secure": false,
+    "headers": {
+      "username": "",
+      "password": ""
+    }
+  },
   "/api": {
     "target": PROXY_SERVER,
     "changeOrigin": true,

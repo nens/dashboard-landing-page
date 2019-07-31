@@ -156,8 +156,16 @@ class App extends Component {
     );
   }
 
+  getImageUrl = (url) => {
+    if (url.startsWith('https://') || url.startsWith('http://')) {
+      return url;
+    } else {
+      return "/dashboard/" + url;
+    }
+  }
 
   render () {
+
     return (
       <div className="App">
 
@@ -165,11 +173,11 @@ class App extends Component {
           return (
             <div className="Dashboard">
               <h1>{dashboard.title || ""}</h1>
-              {dashboard.logo?<img src={dashboard.logo}></img>:null}
+              {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
               <p>{dashboard.description || ""}</p>
               <p>{dashboard.tags || ""}</p>
               <p>{dashboard.metaData || ""}</p>
-              {dashboard.logoCompanies?<img src={dashboard.logoCompanies}></img>:null}
+              {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
             </div>
           )
 
