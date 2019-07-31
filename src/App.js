@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { addGetParameter } from './urls';
 
 class App extends Component {
 
@@ -11,6 +12,16 @@ class App extends Component {
       fetchJSONS: "NOT_SEND", // "SEND" "RECEIVED" "FAILED"
       dashboardSlugs: [],
       dashboardJsons: [],
+      user: {},
+      loginUrl: "",
+      logoutUrl: "",
+      /*
+      {
+        authenticated: true,
+        first_name: "Tom", 
+        username: "tom.deboer",
+      }
+      //*/
     }
   }
 
@@ -123,6 +134,9 @@ class App extends Component {
             that.setState({
               fetchJSONS: "RECEIVED",
               dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults) : [],
+              user: parsedResults && parsedResults[0]  ? parsedResults[0].user : {},
+              loginUrl : parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.login  : "",
+              logoutUrl: parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.logout : "",
             })
           })
         })
@@ -131,10 +145,35 @@ class App extends Component {
     );
   }
 
+  doLogin = () => {
+    window.location = addGetParameter(
+      this.state.loginUrl, 'next', window.location.href
+    );
+  }
+  doLogout = () => {
+    window.location = addGetParameter(
+      this.state.logoutUrl, 'next', window.location.href
+    );
+  }
+
 
   render () {
     return (
       <div className="App">
+
+        {this.state.dashboardJsons.map(dashboard=>{
+          return (
+            <div className="Dashboard">
+              <h1>{dashboard.title || ""}</h1>
+              {dashboard.logo?<img src={dashboard.logo}></img>:null}
+              <p>{dashboard.description || ""}</p>
+              <p>{dashboard.tags || ""}</p>
+              <p>{dashboard.metaData || ""}</p>
+              {dashboard.logoCompanies?<img src={dashboard.logoCompanies}></img>:null}
+            </div>
+          )
+
+        })}
         {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
