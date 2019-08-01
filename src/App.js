@@ -198,7 +198,11 @@ class App extends Component {
               id="user_dropdown_toggle"
               href="#"
             >
-              {/* Some text */}
+              {/* 
+                - This is the pageblocker that shows when the dropdown is shown. It captures clicks for the dropdown to close.
+                - The id is required to be on this element because the browser will scroll to the element with the id.
+                In this case the element is positioned to the top so there wil be no annoying scroll. 
+              */}
             </a>
 
             {this.state.user.authenticated === true ?
@@ -208,12 +212,6 @@ class App extends Component {
                 >
                   <a 
                     href="#user_dropdown_toggle" 
-                    onClick={function (event){
-                      // not work also stops url from being created
-                      // console.log('clicked');
-                      // // event.preventDefault();
-                      // return false;
-                    }}
                   >
                     <i className="fa fa-caret-down" />
                     &nbsp;&nbsp;
