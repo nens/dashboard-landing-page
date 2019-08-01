@@ -1,4 +1,6 @@
 import React,  { Component } from 'react';
+import MDSpinner from "react-md-spinner";
+
 import logo from './logo.svg';
 import './App.css';
 import { addGetParameter } from './urls';
@@ -194,8 +196,9 @@ class App extends Component {
         <body>
 
         
-
           <div className="DashboardList">
+            
+            
             
             {this.state.dashboardJsons.map(dashboard=>{
               return (
@@ -221,6 +224,21 @@ class App extends Component {
               )
 
             })}
+            <div 
+              className="Spinner"
+              style={
+                this.state.fetchSlugs === "RECEIVED" &&
+                this.state.fetchJSONS === "RECEIVED" ?
+                {visibility: "hidden"}
+                :
+                {}
+              }
+            >
+              <MDSpinner 
+                size={164}
+                singleColor={"#115E67"}
+              />
+            </div>
           </div>
 
           <div className="ExplainColumn">

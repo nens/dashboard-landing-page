@@ -7,7 +7,6 @@ body,
 }
 
 .App {
-  /* text-align: center; */
   display: flex;
   flex-direction: column;
 }
@@ -32,9 +31,6 @@ body,
 
 .App header h1 {
   color: #115E67;
-  /* padding-bottom: 0; */
-  /* margin-top: 0;
-  margin-bottom: 0; */
 }
 .App header a {
   color: #115E67;
@@ -42,6 +38,7 @@ body,
 }
 .App header a:nth-child(1) {
   font-size: 2rem;
+  visibility: hidden;
 }
 .App header a:nth-child(2) {
   font-size: 1.3rem;
@@ -50,7 +47,6 @@ body,
 .App body {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
   padding: 24px;
   padding-top: 0;
 }
@@ -58,9 +54,22 @@ body,
 .DashboardList {
   display: flex;
   flex-direction: column;
+  width: 74%;
   flex-basis: 75%;
   flex-shrink: 0;
   padding-right: 24px;
+  position: relative;
+}
+
+.DashboardList .Spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 
@@ -96,7 +105,6 @@ body,
 }
 
 .Dashboard .Info {
-  /* padding: 10px; */
 }
 
 .Dashboard .Info h2 {
