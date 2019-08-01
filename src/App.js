@@ -196,16 +196,6 @@ class App extends Component {
             {/* user / login */}
             <a
               id="user_dropdown_toggle"
-              // style={{
-              //   position: "fixed",
-              //   height: "100%",
-              //   width: "100%",
-              //   display: "block",
-              //   top: "0",
-              //   left: "0",
-              //   zIndex: "10",
-              //   visibility: "hidden",
-              // }}
               href="#"
             >
               {/* Some text */}
@@ -247,7 +237,7 @@ class App extends Component {
                     // onMouseLeave={() => this.setState({showProfileList: false})}
                     className="DropDownContent"
                   >
-                    <a href="/accounts/login/?next=/edit_profile/"
+                    <a href="https://sso.lizard.net/edit_profile/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
