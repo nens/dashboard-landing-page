@@ -194,10 +194,37 @@ class App extends Component {
             <a className="Back" href="/dashboards">&larr;</a>
             
             {/* user / login */}
+            <a
+              id="user_dropdown_toggle"
+              // style={{
+              //   position: "fixed",
+              //   height: "100%",
+              //   width: "100%",
+              //   display: "block",
+              //   top: "0",
+              //   left: "0",
+              //   zIndex: "10",
+              //   visibility: "hidden",
+              // }}
+              href="#"
+            >
+              {/* Some text */}
+            </a>
+
             {this.state.user.authenticated === true ?
-              <div>
-                <div id="">
-                  <a href={this.getLoginUrl()}>
+              <div className="Dropdown">
+                <div
+                  className="DropdownClosed"
+                >
+                  <a 
+                    href="#user_dropdown_toggle" 
+                    onClick={function (event){
+                      // not work also stops url from being created
+                      // console.log('clicked');
+                      // // event.preventDefault();
+                      // return false;
+                    }}
+                  >
                     <i className="fa fa-caret-down" />
                     &nbsp;&nbsp;
                     <i className="fa fa-user" />
@@ -205,9 +232,11 @@ class App extends Component {
                     {this.state.user.first_name}
                   </a>
                 </div>
-                <div>
-                  <a href={this.getLoginUrl()}>
-                    <i className="fa fa-caret-down" />
+                <div
+                  className="DropdownOpen"
+                >
+                  <a href="#">
+                    <i className="fa fa-caret-up" />
                     &nbsp;&nbsp;
                     <i className="fa fa-user" />
                     &nbsp;&nbsp;
@@ -216,15 +245,16 @@ class App extends Component {
                   <div
                     // className={styles.DropdownMenu}
                     // onMouseLeave={() => this.setState({showProfileList: false})}
+                    className="DropDownContent"
                   >
                     <a href="/accounts/login/?next=/edit_profile/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <i className="fa fa-pencil" />
-                      &nbsp;&nbsp;Edit Profile
+                      &nbsp;&nbsp;Edit&nbsp;Profile
                     </a>
-                    <a href="/accounts/logout/" >
+                    <a href={this.getLogoutUrl()} >
                       <i className="fa fa-power-off" />
                       &nbsp;&nbsp;Logout
                     </a>

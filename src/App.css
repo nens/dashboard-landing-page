@@ -15,6 +15,7 @@ body,
   display: flex;
   flex-direction: column;
   padding: 24px;
+  padding-right: 120px;
   padding-bottom: 0;
 }
 
@@ -43,6 +44,46 @@ body,
 }
 .App header div a {
   font-size: 1.3rem;
+}
+.App header .Dropdown .DropdownOpen {
+  display: none;
+  flex-direction: column;
+  position: relative;
+}
+
+.App header .Dropdown .DropdownOpen .DropDownContent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  top: 28px;
+  left: 20px;
+}
+.App header .Dropdown .DropdownOpen .DropDownContent a {
+  margin-bottom: 4px;
+}
+
+#user_dropdown_toggle:target+.Dropdown .DropdownOpen {
+  display: flex;
+  z-index: 20;
+}
+#user_dropdown_toggle:target+.Dropdown .DropdownClosed {
+  display: none;
+}
+#user_dropdown_toggle {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  visibility: hidden;
+  cursor: default;
+}
+
+#user_dropdown_toggle:target{
+  visibility: visible;
 }
 
 .App body {
