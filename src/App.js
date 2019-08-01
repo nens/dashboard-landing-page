@@ -159,17 +159,11 @@ class App extends Component {
   }
 
   getLoginUrl = () => {
-    // window.location = addGetParameter(
-    //   this.state.loginUrl, 'next', window.location.href
-    // );
     return addGetParameter(
       this.state.loginUrl, 'next', window.location.href
     );
   }
   getLogoutUrl = () => {
-    // window.location = addGetParameter(
-    //   this.state.logoutUrl, 'next', window.location.href
-    // );
     return addGetParameter(
       this.state.logoutUrl, 'next', window.location.href
     );
@@ -231,8 +225,6 @@ class App extends Component {
                     {this.state.user.first_name}
                   </a>
                   <div
-                    // className={styles.DropdownMenu}
-                    // onMouseLeave={() => this.setState({showProfileList: false})}
                     className="DropDownContent"
                   >
                     <a href="https://sso.lizard.net/edit_profile/"
@@ -338,56 +330,14 @@ class App extends Component {
               </p>
             </article>
             
-            {/* <article>
-              <h1>
-                Nog een andere vraag?
-              </h1>
-              <p>
-                Wat is het fijn om een dashboard te zijn !
-              </p>
-            </article> */}
           </div>
         </body>
-        
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
       </div>
     )
   }
 }
 export default App;
 
-// function App() {
-//   return (
-//     <div className="App">
-//       {/* <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header> */}
-//     </div>
-//   );
-// }
+
 
 
