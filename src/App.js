@@ -229,7 +229,11 @@ class App extends Component {
                 Wat is een dashboard?
               </h1>
               <p>
-                Wat is het fijn om een dashboard te zijn !
+                Met een dashboard kunt u situaties in real-time te volgen.
+                Het bevat geografische data in de vorm van kaarten of tijdseries in de vorm van charts.
+                Verder kunnen ook statische modellen worden getoond.
+                Een dashboard toont deze data in een of meerdere tiles. 
+                Onze adviseurs kunnen deze tiles naar u wensen configureren.
               </p>
             </article>
             
@@ -238,18 +242,24 @@ class App extends Component {
                 Hoe gebruik ik mijn dashboard?
               </h1>
               <p>
-                Wat is het fijn om een dashboard te zijn !
+                Neem eventueel contact op met de helpdesk. Dit kan namelijk namelijk sterk per dashboard verschillen, maar er zijn een aantal dingen steeds hetzelfde:
+                <ul>
+                  <li>Open het dashboard door erop te klikken links in dit scherm.</li>
+                  <li>Het dashboard bestaat uit tiles. U kunt tiles fullscreen maken door erop te klikken</li>
+                  <li>In zowel map als chart tiles kunt u zoomen en pannen met de muis.</li>
+                  <li>Op een kaart kunt u bepaalde elementen aanklikken om de waarde te tonen.</li>
+                </ul>
               </p>
             </article>
             
-            <article>
+            {/* <article>
               <h1>
                 Nog een andere vraag?
               </h1>
               <p>
                 Wat is het fijn om een dashboard te zijn !
               </p>
-            </article>
+            </article> */}
           </div>
         </body>
         
