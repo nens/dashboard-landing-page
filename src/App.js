@@ -181,8 +181,15 @@ class App extends Component {
       <div className="App">
 
         <header>
-          <h1>Mijn Dashboards</h1>
-          <span>Login</span>
+          <div>
+            {/* back */}
+            <a href="/dashboards">&larr;</a>
+            {/* user / login */}
+            <a href="/">Login</a>
+          </div>
+          <div>
+            <h1>Mijn Dashboards</h1>
+          </div>
         </header>
         <body>
 
