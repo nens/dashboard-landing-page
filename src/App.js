@@ -191,10 +191,46 @@ class App extends Component {
         <header>
           <div>
             {/* back */}
-            <a href="/dashboards">&larr;</a>
+            <a className="Back" href="/dashboards">&larr;</a>
+            
             {/* user / login */}
             {this.state.user.authenticated === true ?
-              <a href={this.getLoginUrl()}>{this.state.user.first_name}</a>
+              <div>
+                <div id="">
+                  <a href={this.getLoginUrl()}>
+                    <i className="fa fa-caret-down" />
+                    &nbsp;&nbsp;
+                    <i className="fa fa-user" />
+                    &nbsp;&nbsp;
+                    {this.state.user.first_name}
+                  </a>
+                </div>
+                <div>
+                  <a href={this.getLoginUrl()}>
+                    <i className="fa fa-caret-down" />
+                    &nbsp;&nbsp;
+                    <i className="fa fa-user" />
+                    &nbsp;&nbsp;
+                    {this.state.user.first_name}
+                  </a>
+                  <div
+                    // className={styles.DropdownMenu}
+                    // onMouseLeave={() => this.setState({showProfileList: false})}
+                  >
+                    <a href="/accounts/login/?next=/edit_profile/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fa fa-pencil" />
+                      &nbsp;&nbsp;Edit Profile
+                    </a>
+                    <a href="/accounts/logout/" >
+                      <i className="fa fa-power-off" />
+                      &nbsp;&nbsp;Logout
+                    </a>
+                  </div>
+                </div>
+              </div>
               :
               this.state.fetchSlugs === "RECEIVED" &&
               this.state.fetchJSONS === "RECEIVED" ?

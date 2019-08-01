@@ -37,11 +37,11 @@ body,
   text-decoration: none;
   cursor: pointer;
 }
-.App header a:nth-child(1) {
+.App header .Back {
   font-size: 2rem;
   visibility: hidden;
 }
-.App header a:nth-child(2) {
+.App header div a {
   font-size: 1.3rem;
 }
 
