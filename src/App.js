@@ -158,13 +158,19 @@ class App extends Component {
     );
   }
 
-  doLogin = () => {
-    window.location = addGetParameter(
+  getLoginUrl = () => {
+    // window.location = addGetParameter(
+    //   this.state.loginUrl, 'next', window.location.href
+    // );
+    return addGetParameter(
       this.state.loginUrl, 'next', window.location.href
     );
   }
-  doLogout = () => {
-    window.location = addGetParameter(
+  getLogoutUrl = () => {
+    // window.location = addGetParameter(
+    //   this.state.logoutUrl, 'next', window.location.href
+    // );
+    return addGetParameter(
       this.state.logoutUrl, 'next', window.location.href
     );
   }
@@ -187,7 +193,15 @@ class App extends Component {
             {/* back */}
             <a href="/dashboards">&larr;</a>
             {/* user / login */}
-            <a href="/">Login</a>
+            {this.state.user.authenticated === true ?
+              <a href={this.getLoginUrl()}>{this.state.user.first_name}</a>
+              :
+              this.state.fetchSlugs === "RECEIVED" &&
+              this.state.fetchJSONS === "RECEIVED" ?
+              <a href={this.getLoginUrl()}>Login</a>
+              : 
+              null
+            }
           </div>
           <div>
             <h1>Mijn Dashboards</h1>
