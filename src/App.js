@@ -59,17 +59,21 @@ class App extends Component {
   }
 
   getRelevantDashboardDataFromJSON = (dashboardJSONS, dashboardSlugs) => {
-    console.log('dashboardJSONS', dashboardJSONS, dashboardSlugs);
+    // save slug next to json in same object because it is needed later to create url href
     return dashboardJSONS.map((dashboardJSON, i)=>{
       return {
         json: dashboardJSON,
         slug: dashboardSlugs[i],
       }
-    }).filter(dashboardJsonObj=>{
+    })
+    // filter out those dashboards that do not have a meta object 
+    .filter(dashboardJsonObj=>{
       return dashboardJsonObj.json &&
         dashboardJsonObj.json.configuration &&
         dashboardJsonObj.json.configuration.meta
-    }).map(dashboardJsonObj => {
+    })
+    // map the required fields needed to generate the html
+    .map(dashboardJsonObj => {
       return {
         title: dashboardJsonObj.json.configuration.meta.title,
         description: dashboardJsonObj.json.configuration.meta.description,
