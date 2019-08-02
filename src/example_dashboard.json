@@ -1,0 +1,130 @@
+{
+   "referenceLevels":{
+      "205510":"test"
+   },
+   "tiles":[
+      {
+         "wmsLayers":[
+            {
+               "layers":"s0175_ijgenzon:s0175_debieten_meetlocaties",
+               "format":"image/png",
+               "url":"https://maps1.project.lizard.net/geoserver/s0175_ijgenzon/wms?&SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.11",
+               "height":256,
+               "zindex":1009,
+               "width":256,
+               "srs":"EPSG:3857",
+               "transparent":true
+            }
+         ],
+         "assetTypes":[
+            "measuringstation"
+         ],
+         "rasters":[
+            {
+               "opacity":"1",
+               "uuid":"304a5989-3e12-4fce-8504-2939b37c6314",
+               "showRasterInfoPopup":true
+            }
+         ],
+         "shortTitle":"Regen",
+         "title":"Regen",
+         "datetime":{
+            "to":"now",
+            "type":"relative",
+            "offset":0
+         },
+         "viewInLizardLink":"https://fosholi.lizard.net/favourites/aa9a4f55-5bc2-473d-814c-0c9b37953610",
+         "bbox":[
+            "4.445343",
+            "52.450988",
+            "5.328369",
+            "53.132766"
+         ],
+         "type":"map",
+         "id":1
+      },
+      {
+         "title":"Neerslag overschot",
+         "url":"http://cdn.knmi.nl/knmi/map/page/klimatologie/geografische-overzichten/rdev/rdev_geografisch.png",
+         "imageUrl":"http://cdn.knmi.nl/knmi/map/page/klimatologie/geografische-overzichten/rdev/rdev_geografisch.png",
+         "viewInLizardLink":"https://ijgenzon.lizard.net/",
+         "renderAsImage":true,
+         "type":"external",
+         "id":2
+      },
+      {
+         "title":"IJGENZON debiet",
+         "url":"https://nxt.staging.lizard.net/media/generated/ijgenzon_debiet.png",
+         "imageUrl":"https://nxt.staging.lizard.net/media/generated/ijgenzon_debiet.png",
+         "renderAsImage":true,
+         "viewInLizardLink":"https://ijgenzon.lizard.net/",
+         "type":"external",
+         "id":3
+      },
+      {
+         "title":"IJGENZON waterhoogte",
+         "url":"https://nxt.staging.lizard.net/media/generated/ijgenzon_waterhoogte.png",
+         "imageUrl":"https://nxt.staging.lizard.net/media/generated/ijgenzon_waterhoogte.png",
+         "renderAsImage":true,
+         "viewInLizardLink":"https://ijgenzon.lizard.net/",
+         "type":"external",
+         "id":4
+      },
+      {
+         "shortTitle":"VRNK neerslag en waterhoogte",
+         "title":"VRNK neerslag en waterhoogte",
+         "thresholds":[
+            {
+               "color":"#333388",
+               "unitReference":"mNAP",
+               "value":"-0.59",
+               "label":"Streefpeil"
+            }
+         ],
+         "legendStrings":[
+            "Neerslag VRNK",
+            "Waterhoogte VRNK"
+         ],
+         "colors":[
+            "#3196DA",
+            "#E67E22"
+         ],
+         "viewInLizardLink":"https://ijgenzon.lizard.net/",
+         "timeseries":[
+            "de72bb4f-110b-4dff-88db-9b8e35a6be7d",
+            "d7e8e4cb-ebb9-4f5c-ab92-a6dce83ad134"
+         ],
+         "type":"timeseries",
+         "id":5
+      }
+   ],
+   "meta":{
+      "gridView":{
+         "columnCount":3
+      },
+      "mapBackgrounds":[
+         {
+            "url":"https://{s}.tiles.mapbox.com/v3/nelenschuurmans.l15e647c/{z}/{x}/{y}.png",
+            "description":"Neutral Map"
+         },
+         {
+            "url":"https://{s}.tiles.mapbox.com/v3/nelenschuurmans.iaa98k8k/{z}/{x}/{y}.png",
+            "description":"Topographical Map"
+         },
+         {
+            "url":"https://{s}.tiles.mapbox.com/v3/nelenschuurmans.iaa79205/{z}/{x}/{y}.png",
+            "description":"Labelled Satellite Map"
+         }
+      ],
+      "headerColors":{
+         "bg":"#16a085",
+         "fg":"#FFFFFF"
+      },
+      "title":"IJGENZON DASHBOARD",
+      "logo":"logos/rws.png",
+      "description": "Dit is het STAGING dashboard van IJGENZON. Het is mogelijk hier van allerhande informatie op te schrijven. Neem hier gerust de tijd voor. De programmeur doet dit niet voor je. Die weet gewoon niet wat op te schrijven. De gemiddelde programmeur denkt dat ijgenzon iemand is die de zon voor zich eigen wil houden. Zodoende.",
+      "tags": "Tags, Zon, IJGEN",
+      "metadata": "Zeer metadata",
+      "logoCompanies": "logos/rws.png"
+   }
+}

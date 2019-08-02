@@ -1,4 +1,6 @@
 import React,  { Component } from 'react';
+import MDSpinner from "react-md-spinner";
+
 import logo from './logo.svg';
 import './App.css';
 import { addGetParameter } from './urls';
@@ -52,23 +54,34 @@ class App extends Component {
     }
     //*/
     // We will use the slug instead of the url to make it easy to work with on dev (with the proxy)
-    return dashboardsObject.results.map(dashb=>dashb.slug);
+    // return dashboardsObject.results.map(dashb=>dashb.slug);
+    return dashboardsObject.results;//.results.map(dashb=>dashb.slug);
   }
 
-  getRelevantDashboardDataFromJSON = (dashboardJSONS) => {
-    console.log('dashboardJSONS', dashboardJSONS);
-    return dashboardJSONS.filter(dashboardJSON=>{
-      return dashboardJSON &&
-      dashboardJSON.configuration &&
-      dashboardJSON.configuration.meta
-    }).map(dashboardJSON => {
+  getRelevantDashboardDataFromJSON = (dashboardJSONS, dashboardSlugs) => {
+    // save slug next to json in same object because it is needed later to create url href
+    return dashboardJSONS.map((dashboardJSON, i)=>{
       return {
-        title: dashboardJSON.configuration.meta.title,
-        description: dashboardJSON.configuration.meta.description,
-        tags: dashboardJSON.configuration.meta.tags,
-        metaData: dashboardJSON.configuration.meta.metaData,
-        logo: dashboardJSON.configuration.meta.logo,
-        logoCompanies: dashboardJSON.configuration.meta.logoCompanies,
+        json: dashboardJSON,
+        slug: dashboardSlugs[i],
+      }
+    })
+    // filter out those dashboards that do not have a meta object 
+    .filter(dashboardJsonObj=>{
+      return dashboardJsonObj.json &&
+        dashboardJsonObj.json.configuration &&
+        dashboardJsonObj.json.configuration.meta
+    })
+    // map the required fields needed to generate the html
+    .map(dashboardJsonObj => {
+      return {
+        title: dashboardJsonObj.json.configuration.meta.title,
+        description: dashboardJsonObj.json.configuration.meta.description,
+        tags: dashboardJsonObj.json.configuration.meta.tags,
+        metadata: dashboardJsonObj.json.configuration.meta.metadata,
+        logo: dashboardJsonObj.json.configuration.meta.logo,
+        logoCompanies: dashboardJsonObj.json.configuration.meta.logoCompanies,
+        slug: dashboardJsonObj.slug,
       }
     })
   }
@@ -86,15 +99,19 @@ class App extends Component {
             results: [
               {
                 slug: "dashboard2",
+                url: "https://nxt3.staging.lizard.net/dashboard/dashboard2",
               },
               {
                 slug: "dashboard",
+                url: "https://nxt3.staging.lizard.net/dashboard/dashboard",
               },
               {
                 slug: "tom1",
+                url: "https://nxt3.staging.lizard.net/dashboard/tom1",
               },
               {
                 slug: "scenario7", // this dashboard actually belongs to parramatta. This is to test for errors
+                url: "https://nxt3.staging.lizard.net/dashboard/scenario7",
               },
             ],
           }),
@@ -119,7 +136,7 @@ class App extends Component {
 
   fetchDashboardJSONS = (slugs) => {
     const that = this;
-    const relativeUrls = slugs.map(slug=>`/bootstrap/${slug}/`);
+    const relativeUrls = slugs.map(slug=>`/bootstrap/${slug.slug}/`);
     const requestPromises = relativeUrls.map(url=> fetch(url));
 
     
@@ -133,7 +150,7 @@ class App extends Component {
           Promise.all(parsedPromises).then(parsedResults => {
             that.setState({
               fetchJSONS: "RECEIVED",
-              dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults) : [],
+              dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults, that.state.dashboardSlugs) : [],
               user: parsedResults && parsedResults[0]  ? parsedResults[0].user : {},
               loginUrl : parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.login  : "",
               logoutUrl: parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.logout : "",
@@ -145,74 +162,186 @@ class App extends Component {
     );
   }
 
-  doLogin = () => {
-    window.location = addGetParameter(
+  getLoginUrl = () => {
+    return addGetParameter(
       this.state.loginUrl, 'next', window.location.href
     );
   }
-  doLogout = () => {
-    window.location = addGetParameter(
+  getLogoutUrl = () => {
+    return addGetParameter(
       this.state.logoutUrl, 'next', window.location.href
     );
   }
 
+  getImageUrl = (url) => {
+    if (url.startsWith('https://') || url.startsWith('http://')) {
+      return url;
+    } else {
+      return "/dashboard/" + url;
+    }
+  }
 
   render () {
+
     return (
       <div className="App">
 
-        {this.state.dashboardJsons.map(dashboard=>{
-          return (
-            <div className="Dashboard">
-              <h1>{dashboard.title || ""}</h1>
-              {dashboard.logo?<img src={dashboard.logo}></img>:null}
-              <p>{dashboard.description || ""}</p>
-              <p>{dashboard.tags || ""}</p>
-              <p>{dashboard.metaData || ""}</p>
-              {dashboard.logoCompanies?<img src={dashboard.logoCompanies}></img>:null}
-            </div>
-          )
+        <header>
+          <div>
+            {/* back */}
+            <a className="Back" href="/dashboards">&larr;</a>
+            
+            {/* user / login */}
+            <a
+              id="user_dropdown_toggle"
+              href="#"
+            >
+              {/* 
+                - This is the pageblocker that shows when the dropdown is shown. It captures clicks for the dropdown to close.
+                - The id is required to be on this element because the browser will scroll to the element with the id.
+                In this case the element is positioned to the top so there wil be no annoying scroll. 
+              */}
+            </a>
 
-        })}
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
+            {this.state.user.authenticated === true ?
+              <div className="Dropdown">
+                <div
+                  className="DropdownClosed"
+                >
+                  <a 
+                    href="#user_dropdown_toggle" 
+                  >
+                    <i className="fa fa-caret-down" />
+                    &nbsp;&nbsp;
+                    <i className="fa fa-user" />
+                    &nbsp;&nbsp;
+                    {this.state.user.first_name}
+                  </a>
+                </div>
+                <div
+                  className="DropdownOpen"
+                >
+                  <a href="#">
+                    <i className="fa fa-caret-up" />
+                    &nbsp;&nbsp;
+                    <i className="fa fa-user" />
+                    &nbsp;&nbsp;
+                    {this.state.user.first_name}
+                  </a>
+                  <div
+                    className="DropDownContent"
+                  >
+                    <a href="https://sso.lizard.net/edit_profile/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fa fa-pencil" />
+                      &nbsp;&nbsp;Edit&nbsp;Profile
+                    </a>
+                    <a href={this.getLogoutUrl()} >
+                      <i className="fa fa-power-off" />
+                      &nbsp;&nbsp;Logout
+                    </a>
+                  </div>
+                </div>
+              </div>
+              :
+              this.state.fetchSlugs === "RECEIVED" &&
+              this.state.fetchJSONS === "RECEIVED" ?
+              <a href={this.getLoginUrl()}>Login</a>
+              : 
+              null
+            }
+          </div>
+          <div>
+            <h1>Mijn Dashboards</h1>
+          </div>
+        </header>
+        <body>
+
+        
+          <div className="DashboardList">
+            
+            
+            
+            {this.state.dashboardJsons.map(dashboard=>{
+              return (
+                <a 
+                  className="Dashboard"
+                  href={dashboard.slug.url}
+                >
+                  <div className="Logo">
+                    {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
+                  </div>
+                  <div className="Info">
+                    <h2>{dashboard.title || ""}</h2>
+                    <p>{dashboard.description || ""}</p>
+                    <div  className="MetaTags">
+                      <div>{dashboard.tags || ""}</div>
+                      <span>{dashboard.metadata || ""}</span>
+                    </div>
+                  </div>
+                  <div  className="Logo LogoCompany">
+                    {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
+                  </div>
+                </a>
+              )
+
+            })}
+            <div 
+              className="Spinner"
+              style={
+                this.state.fetchSlugs === "RECEIVED" &&
+                this.state.fetchJSONS === "RECEIVED" ?
+                {visibility: "hidden"}
+                :
+                {}
+              }
+            >
+              <MDSpinner 
+                size={164}
+                singleColor={"#115E67"}
+              />
+            </div>
+          </div>
+
+          <div className="ExplainColumn">
+            <article>
+              <h1>
+                Wat is een dashboard?
+              </h1>
+              <p>
+                Met een dashboard kunt u situaties in real-time te volgen.
+                Het bevat geografische data in de vorm van kaarten of tijdseries in de vorm van charts.
+                Verder kunnen ook statische modellen worden getoond.
+                Een dashboard toont deze data in een of meerdere tiles. 
+                Onze adviseurs kunnen deze tiles naar u wensen configureren.
+              </p>
+            </article>
+            
+            <article>
+              <h1>
+                Hoe gebruik ik mijn dashboard?
+              </h1>
+              <p>
+                Neem eventueel contact op met de helpdesk. Dit kan namelijk namelijk sterk per dashboard verschillen, maar er zijn een aantal dingen steeds hetzelfde:
+                <ul>
+                  <li>Open het dashboard door erop te klikken links in dit scherm.</li>
+                  <li>Het dashboard bestaat uit tiles. U kunt tiles fullscreen maken door erop te klikken</li>
+                  <li>In zowel map als chart tiles kunt u zoomen en pannen met de muis.</li>
+                  <li>Op een kaart kunt u bepaalde elementen aanklikken om de waarde te tonen.</li>
+                </ul>
+              </p>
+            </article>
+            
+          </div>
+        </body>
       </div>
     )
   }
 }
 export default App;
 
-// function App() {
-//   return (
-//     <div className="App">
-//       {/* <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header> */}
-//     </div>
-//   );
-// }
+
 
 

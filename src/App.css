@@ -1,35 +1,169 @@
+html,
+body,
+.root,
 .App {
-  text-align: center;
+  background-color: #E2F9EE;
+  height: 100%;
 }
 
-
-
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
   display: flex;
   flex-direction: column;
+}
+
+.App header {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  padding-right: 120px;
+  padding-bottom: 0;
+}
+
+.App header > div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center
+}
+.App header:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+}
+
+.App header h1 {
+  color: #115E67;
+}
+.App header a {
+  color: #115E67;
+  text-decoration: none;
+  cursor: pointer;
+}
+.App header .Back {
+  font-size: 2rem;
+  visibility: hidden;
+}
+.App header div a {
+  font-size: 1.3rem;
+}
+.App header .Dropdown .DropdownOpen {
+  display: none;
+  flex-direction: column;
+  position: relative;
+}
+
+.App header .Dropdown .DropdownOpen .DropDownContent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  top: 28px;
+  left: 20px;
+}
+.App header .Dropdown .DropdownOpen .DropDownContent a {
+  margin-bottom: 4px;
+}
+
+#user_dropdown_toggle:target+.Dropdown .DropdownOpen {
+  display: flex;
+  z-index: 20;
+}
+#user_dropdown_toggle:target+.Dropdown .DropdownClosed {
+  display: none;
+}
+#user_dropdown_toggle {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  visibility: hidden;
+  cursor: default;
+}
+
+#user_dropdown_toggle:target{
+  visibility: visible;
+}
+
+.App body {
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+  padding-top: 0;
+}
+
+.DashboardList {
+  display: flex;
+  flex-direction: column;
+  width: 74%;
+  flex-basis: 75%;
+  flex-shrink: 0;
+  padding-right: 24px;
+  position: relative;
+}
+
+.DashboardList .Spinner {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+.Dashboard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  margin-top: 12px;
+  box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
+  padding: 24px;
+}
+.Dashboard:nth-child(1) {
+  margin-top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.Dashboard .Logo {
+  padding: 24px;
+  flex-basis: 25%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.Dashboard .Logo.LogoCompany {
+  padding: 24px;
+  flex-basis: 20%;
+}
+.Dashboard .Logo img {
+  max-width: 100%;
+}
+
+.Dashboard .Info {
+}
+
+.Dashboard .Info h2 {
+  color: #818181;
+  margin-top: 0;
+}
+
+.App .ExplainColumn {
+  background-color: white;
+  box-shadow: 0px 3px 3px hsla(120,0%,0%,0.16);
+}
+
+.App .ExplainColumn article {
+  margin-top: 10px;
+  padding: 24px;
+}
+
+.App .ExplainColumn article h1 {
+  color: #818181;
+}

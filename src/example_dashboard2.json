@@ -1,0 +1,303 @@
+{
+  "tiles":[
+     {
+        "shortTitle":"Display static grids - Elevation (mNAP)",
+        "title":"Display static grids - Elevation (mNAP)",
+        "viewInLizardLink":"https://demo.lizard.net/nl/map/topography,raster$1d65a4e/point/@51.9539,5.0465,12/-2Days0Hours+0Days3Hours",
+        "type":"map",
+        "id":1,
+        "rasters":[
+           {
+              "opacity":"1.0",
+              "uuid":"f3e3c9c2-e83e-4185-8057-3c26770b2137"
+           }
+        ],
+        "datetime":{
+           "to":"now",
+           "type":"relative",
+           "offset":0
+        },
+        "bbox":[
+           "4.713",
+           "52.045",
+           "5.339",
+           "51.858"
+        ]
+     },
+     {
+        "title":"Hoogte en debieten 2",
+        "type":"map",
+        "id":2,
+        "shortTitle":"Hoogte en debieten 2",
+        "viewInLizardLink":"https://ijgenzon.lizard.net/nl/map/neutral,raster$1d65a4e,wmslayer$403a7a0c/point@52.7271,5.8951,9/-5Days1Hours+1Days0Hours",
+        "wmsLayers":[
+           {
+              "layers":"s0175_ijgenzon:s0175_debieten_meetlocaties",
+              "name":"s0175_debieten_meetlocaties",
+              "feature_title_property":"Naam",
+              "getfeatureinfo_properties":[
+                 {
+                    "key":"name",
+                    "name":"Naam"
+                 },
+                 {
+                    "key":"debiet",
+                    "name":"Debiet"
+                 }
+              ],
+              "format":"image/png",
+              "url":"https://maps1.project.lizard.net/geoserver/s0175_ijgenzon/wms?&SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.11",
+              "height":256,
+              "zindex":1009,
+              "width":256,
+              "srs":"EPSG:3857",
+              "transparent":true
+           }
+        ],
+        "extraLegends":[
+           {
+              "steps":[
+                 {
+                    "color":"red",
+                    "text":"text for red"
+                 },
+                 {
+                    "color":"#FF00FF",
+                    "text":"text for purple"
+                 }
+              ]
+           }
+        ],
+        "renderAsImage":false,
+        "bbox":[
+           "4.562668790367655",
+           "51.941318146188465",
+           "7.227498375212766",
+           "53.49891763395444"
+        ]
+     },
+     {
+        "title":"Neerslagsom komende 48 uur",
+        "type":"map",
+        "id":123,
+        "wmsLayers":[
+           {
+              "layers":"t0269_headashboards:t0269_hea_rrgebieden_voorspelling",
+              "name":"gebieden voorspelling",
+              "feature_title_property":"gebied",
+              "getfeatureinfo_properties":[
+                 {
+                    "key":"name",
+                    "name":"Neerslag 24 uur"
+                 },
+                 {
+                    "key":"neerslag_72h",
+                    "name":"Neerslag 72 uur"
+                 },
+                 {
+                    "key":"deelwaters",
+                    "name":"deelwaters"
+                 },
+                 {
+                    "key":"gebied",
+                    "name":"gebied"
+                 },
+                 {
+                    "key":"hectares",
+                    "name":"hectares"
+                 },
+                 {
+                    "key":"klasse_24h",
+                    "name":"klasse 24h"
+                 },
+                 {
+                    "key":"klasse_72h",
+                    "name":"klasse 72h"
+                 },
+                 {
+                    "key":"neerslag_voorsp",
+                    "name":"neerslag voorspelling"
+                 },
+                 {
+                    "key":"code",
+                    "name":"code"
+                 }
+              ],
+              "format":"image/png",
+              "url":"https://maps1.project.lizard.net/geoserver/t0269_headashboards/wms",
+              "height":256,
+              "zindex":1009,
+              "width":256,
+              "srs":"EPSG:3857",
+              "transparent":true
+           }
+        ],
+        "extraLegends":[
+           {
+              "steps":[
+                 {
+                    "color":"#9b59b6",
+                    "text":"> 50 mm"
+                 },
+                 {
+                    "color":"#be527d",
+                    "text":"> 30 mm"
+                 },
+                 {
+                    "color":"#e75339",
+                    "text":"> 20 mm"
+                 },
+                 {
+                    "color":"#eea819",
+                    "text":"> 10 mm"
+                 },
+                 {
+                    "color":"#bdb23b",
+                    "text":"> 5 mm"
+                 },
+                 {
+                    "color":"#2f82b3",
+                    "text":"> 3 mm"
+                 },
+                 {
+                    "color":"#499ed7",
+                    "text":"> 2 mm"
+                 },
+                 {
+                    "color":"#7daed0",
+                    "text":"> 1 mm"
+                 },
+                 {
+                    "color":"#fffff",
+                    "text":"< 1 mm"
+                 },
+                 {
+                    "color":"#b2b2b2",
+                    "text":"Geen data"
+                 }
+              ]
+           }
+        ],
+        "shortTitle":"Neerslagsom komende 48 uur",
+        "viewInLizardLink":"https://hunzeenaas.lizard.net/nl/map/topography,wmslayer$3c24527/point/@53.0342,6.9955,10/-2Days7Hours-0Days4Hours",
+        "bbox":[
+           "6.28",
+           "52.91",
+           "7.33",
+           "53.28"
+        ]
+     },
+     {
+        "title":"Gemaalstatus",
+        "type":"map",
+        "id":3,
+        "wmsLayers":[
+           {
+              "layers":"s0213_hhnk_gemalen_status",
+              "format":"image/png",
+              "url":"https://maps1.project.lizard.net/geoserver/s0213_hhnk_indicatoren/wms?&SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.11",
+              "height":256,
+              "zindex":1009,
+              "width":256,
+              "srs":"EPSG:3857",
+              "transparent":true
+           }
+        ],
+        "shortTitle":"Actuele gemaalstatus",
+        "datetime":{
+           "to":"now",
+           "type":"relative",
+           "offset":0
+        },
+        "viewInLizardLink":"https://hhnk.lizard.net/favourites/d2eace01-1b37-43fd-a20e-44ae50845dff",
+        "bbox":[
+           "4.445343",
+           "52.450988",
+           "5.328369",
+           "53.132766"
+        ]
+     },
+     {
+        "title":"Gebiedsregelingen",
+        "type":"external",
+        "id":7,
+        "viewInLizardLink":"https://gebiedsregelinghhnk.lizard.net/",
+        "url":"https://docs.google.com/document/d/e/2PACX-1vQQ8yDJlDJkyY87n6-19Z2xdcJcUWBza9nL01zzsOjIXP2RMB5IbqEIcbfPSAsO5ZINw7Ix79o-sls_/pub",
+        "imageUrl":"",
+        "renderAsImage":false
+     },
+     {
+        "title":"ARK-NZK",
+        "type":"external",
+        "id":10,
+        "url":"https://waterberichtgeving.rws.nl/include_files/dynamisch/iwp_extern/Status_NZK-ARK.png",
+        "renderAsImage":true,
+        "imageUrl":"https://waterberichtgeving.rws.nl/include_files/dynamisch/iwp_extern/Status_NZK-ARK.png"
+     },
+     {
+        "title":"ControlNEXT",
+        "viewInLizardLink":"https://gebiedsregelinghhnk.lizard.net/",
+        "type":"external",
+        "id":6,
+        "url":"https://hhnk.lizard.net/media/hhnk/HHNK_Boezemregelingen.png",
+        "renderAsImage":true,
+        "imageUrl":"https://hhnk.lizard.net/media/hhnk/HHNK_Boezemregelingen.png"
+     },
+     {
+        "title":"Neerslagradar",
+        "viewInLizardLink":"https://hhnk.lizard.net/nl/map/neutral,raster$730d6675/point/@52.8044,4.5016,9/-1Days16Hours+0Days10Hours",
+        "type":"external",
+        "id":9,
+        "url":"https://nationaleregenradar.nl/images/radar.gif",
+        "imageUrl":"https://nationaleregenradar.nl/images/radar.gif",
+        "renderAsImage":true
+     },
+     {
+        "title":"Potentieel neerslagoverschot",
+        "url":"http://cdn.knmi.nl/knmi/map/page/klimatologie/geografische-overzichten/rdev/rdev_geografisch.png",
+        "imageUrl":"http://cdn.knmi.nl/knmi/map/page/klimatologie/geografische-overzichten/rdev/rdev_geografisch.png",
+        "renderAsImage":true,
+        "type":"external",
+        "id":5
+     },
+     {
+        "title":"Wateraanvoer IJGenZON",
+        "url":"https://ijgenzon.lizard.net/media/ijgenzon/ijgenzon_debiet3.png",
+        "imageUrl":"https://ijgenzon.lizard.net/media/ijgenzon/ijgenzon_debiet3.png",
+        "renderAsImage":true,
+        "type":"external",
+        "id":4
+     },
+     {
+        "title":"Google Docs demo",
+        "url":"https://docs.google.com/spreadsheets/d/1cd4qRak3wzL5i-HGGtTKCLlJXfdTT6LLPev5Z2ExCpA/edit#gid=0",
+        "imageUrl":"https://sheetsu.com/lp-assets/image/sheetsu_api-without-methods.svg",
+        "renderAsImage":false,
+        "viewInLizardLink":"docs.google.com",
+        "type":"external",
+        "id":12
+     }
+  ],
+  "meta":{
+     "gridView":{
+        "columnCount":3
+     },
+     "mapBackgrounds":[
+        {
+           "url":"https://{s}.tiles.mapbox.com/v3/nelenschuurmans.l15e647c/{z}/{x}/{y}.png",
+           "description":"Neutral Map"
+        }
+     ],
+     "headerColors":{
+        "bg":"#07A080",
+        "fg":"#ffffff"
+     },
+     "title":"hunzeenaas DASHBOARD2",
+     "logo":"https://hunzeenaas.lizard.net/media/logos/healogo.png",
+     "description": "Dit is het STAGING dashboard van hunzeenaas. Het is mogelijk hier van allerhande informatie op te schrijven. Neem hier gerust de tijd voor. De programmeur doet dit niet voor je. Die weet gewoon niet wat op te schrijven. De gemiddelde programmeur denkt dat hunzenaas een zeldzaam type haas is. Zodoende.",
+     "tags": "Tags, Haas, Hunze",
+     "metadata": "Zeer metadata",
+     "logoCompanies": "https://hunzeenaas.lizard.net/media/logos/healogo.png"
+  },
+  "isPublic":true
+}
