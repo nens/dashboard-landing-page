@@ -34,7 +34,7 @@ const PROXY_SETTING = {
       "password": ""
     }
   },
-  "/api/v4": {
+  "/api": {
     "target": PROXY_SERVER,
     "changeOrigin": true,
     "ssl": false,

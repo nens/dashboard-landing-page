@@ -267,7 +267,6 @@ class App extends Component {
             
             
             {this.state.dashboardJsons.map(dashboard=>{
-              console.log("dashboard", dashboard);
               return (
                 <a 
                   className="Dashboard"
