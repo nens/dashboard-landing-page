@@ -12,8 +12,8 @@ class App extends Component {
     this.state = {
       fetchSlugs: "NOT_SEND", // "SEND" "RECEIVED" "FAILED"
       fetchJSONS: "NOT_SEND", // "SEND" "RECEIVED" "FAILED"
-      dashboardSlugs: [],
-      dashboardJsons: [],
+      clientConfigurations: [], // from api/v4/clientconfiguration
+      dashboardJsons: [], // from /bootstrap 
       user: {},
       loginUrl: "",
       logoutUrl: "",
@@ -35,35 +35,16 @@ class App extends Component {
       this.state.fetchSlugs === "RECEIVED" &&
       prevState.fetchSlugs !== "RECEIVED"
     ) {
-      this.fetchDashboardJSONS(this.state.dashboardSlugs);
+      this.fetchDashboardJSONS(this.state.clientConfigurations);
     }
   }
 
-  getSlugsFromDashboardsObjectFromAPI= (dashboardsObject) => {
-    // dashboardsJSON is assumed to be in format:
-    /*
-    {
-      results: [
-        {
-          "url": "nxt3.staging.lizard.net/bootstrap/dashboard",
-          "slug": "",
-        },
-        ...
-      ],
-      ...
-    }
-    //*/
-    // We will use the slug instead of the url to make it easy to work with on dev (with the proxy)
-    // return dashboardsObject.results.map(dashb=>dashb.slug);
-    return dashboardsObject.results;//.results.map(dashb=>dashb.slug);
-  }
-
-  getRelevantDashboardDataFromJSON = (dashboardJSONS, dashboardSlugs) => {
+  getRelevantDashboardDataFromJSON = (dashboardJSONS, clientConfigurations) => {
     // save slug next to json in same object because it is needed later to create url href
     return dashboardJSONS.map((dashboardJSON, i)=>{
       return {
         json: dashboardJSON,
-        slug: dashboardSlugs[i],
+        slug: clientConfigurations[i],
       }
     })
     // filter out those dashboards that do not have a meta object 
@@ -93,50 +74,49 @@ class App extends Component {
         fetchSlugs: "SEND",
       },
       () => {
-        that.setState({
-          fetchSlugs: "RECEIVED",
-          dashboardSlugs: that.getSlugsFromDashboardsObjectFromAPI({
-            results: [
-              {
-                slug: "dashboard2",
-                url: "https://nxt3.staging.lizard.net/dashboard/dashboard2",
-              },
-              {
-                slug: "dashboard",
-                url: "https://nxt3.staging.lizard.net/dashboard/dashboard",
-              },
-              {
-                slug: "tom1",
-                url: "https://nxt3.staging.lizard.net/dashboard/tom1",
-              },
-              {
-                slug: "scenario7", // this dashboard actually belongs to parramatta. This is to test for errors
-                url: "https://nxt3.staging.lizard.net/dashboard/scenario7",
-              },
-            ],
-          }),
+        // that.setState({
+        //   fetchSlugs: "RECEIVED",
+        //   clientConfigurations: [
+        //       {
+        //         client_slug: "dashboard2",
+        //         url: "https://nxt3.staging.lizard.net/dashboard/dashboard2",
+        //       },
+        //       {
+        //         client_slug: "dashboard",
+        //         url: "https://nxt3.staging.lizard.net/dashboard/dashboard",
+        //       },
+        //       {
+        //         client_slug: "tom1",
+        //         url: "https://nxt3.staging.lizard.net/dashboard/tom1",
+        //       },
+        //       {
+        //         client_slug: "scenario7", // this dashboard actually belongs to parramatta. This is to test for errors
+        //         url: "https://nxt3.staging.lizard.net/dashboard/scenario7",
+        //       },
+        //     ],
+        // })
+
+        fetch( "/api/v4/clientconfiguration/?portal__domain="+ window.location.hostname)
+        .then(function(response) {
+          return response.json();
         })
-        // fetch( "/api/v4/dashboardSlugs/")
-        // .then(function(response) {
-        //   return response.json();
-        // })
-        // .then(function(parsedJSON) {
-        //   that.setState({
-        //     fetchSlugs: "RECEIVED",
-        //     dashboardSlugs: parsedJSON ? that.getSlugsFromDashboardsObjectFromAPI(parsedJSON) : [],
-        //   })
-        // })
-        // .catch(error => {
-        //   that.setState({fetchSlugs: "FAILED"})
-        //   console.error('Error:', error);
-        // })
+        .then(function(parsedJSON) {
+          that.setState({
+            fetchSlugs: "RECEIVED",
+            clientConfigurations: parsedJSON ? parsedJSON.results : [],
+          })
+        })
+        .catch(error => {
+          that.setState({fetchSlugs: "FAILED"})
+          console.error('Error:', error);
+        })
       }
     );
   }
 
-  fetchDashboardJSONS = (slugs) => {
+  fetchDashboardJSONS = (clientConfigurations) => {
     const that = this;
-    const relativeUrls = slugs.map(slug=>`/bootstrap/${slug.slug}/`);
+    const relativeUrls = clientConfigurations.map(clientConfiguration=>`/bootstrap/${clientConfiguration.client_slug}/`);
     const requestPromises = relativeUrls.map(url=> fetch(url));
 
     
@@ -150,7 +130,7 @@ class App extends Component {
           Promise.all(parsedPromises).then(parsedResults => {
             that.setState({
               fetchJSONS: "RECEIVED",
-              dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults, that.state.dashboardSlugs) : [],
+              dashboardJsons: parsedResults ? that.getRelevantDashboardDataFromJSON(parsedResults, that.state.clientConfigurations) : [],
               user: parsedResults && parsedResults[0]  ? parsedResults[0].user : {},
               loginUrl : parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.login  : "",
               logoutUrl: parsedResults && parsedResults[0] && parsedResults[0].sso ? parsedResults[0].sso.logout : "",

@@ -12,7 +12,7 @@ const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 
 const host = 'localhost'; // Om toegang andere computers tegen te gaan
 
-const PROXY_SERVER = "https://nxt3.staging.lizard.net"
+const PROXY_SERVER = "http://localhost:8000/"
 const PROXY_SETTING = {
   "/bootstrap": {
     "target": PROXY_SERVER,

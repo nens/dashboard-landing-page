@@ -81,7 +81,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://nxt3.lizard.net/",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
