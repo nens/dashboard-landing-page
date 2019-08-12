@@ -39,25 +39,6 @@ class App extends Component {
     }
   }
 
-  getSlugsFromDashboardsObjectFromAPI= (dashboardsObject) => {
-    // dashboardsJSON is assumed to be in format:
-    /*
-    {
-      results: [
-        {
-          "url": "nxt3.staging.lizard.net/bootstrap/dashboard",
-          "client_slug": "",
-        },
-        ...
-      ],
-      ...
-    }
-    //*/
-    // We will use the slug instead of the url to make it easy to work with on dev (with the proxy)
-    // return dashboardsObject.results.map(dashb=>dashb.slug);
-    return dashboardsObject.results;//.results.map(dashb=>dashb.slug);
-  }
-
   getRelevantDashboardDataFromJSON = (dashboardJSONS, clientConfigurations) => {
     // save slug next to json in same object because it is needed later to create url href
     return dashboardJSONS.map((dashboardJSON, i)=>{
@@ -95,8 +76,7 @@ class App extends Component {
       () => {
         // that.setState({
         //   fetchSlugs: "RECEIVED",
-        //   clientConfigurations: that.getSlugsFromDashboardsObjectFromAPI({
-        //     results: [
+        //   clientConfigurations: [
         //       {
         //         client_slug: "dashboard2",
         //         url: "https://nxt3.staging.lizard.net/dashboard/dashboard2",
@@ -114,7 +94,6 @@ class App extends Component {
         //         url: "https://nxt3.staging.lizard.net/dashboard/scenario7",
         //       },
         //     ],
-        //   }),
         // })
 
         fetch( "/api/v4/clientconfiguration/?portal__domain="+ window.location.hostname)
@@ -124,7 +103,6 @@ class App extends Component {
         .then(function(parsedJSON) {
           that.setState({
             fetchSlugs: "RECEIVED",
-            // clientConfigurations: parsedJSON ? that.getSlugsFromDashboardsObjectFromAPI(parsedJSON) : [],
             clientConfigurations: parsedJSON ? parsedJSON.results : [],
           })
         })
