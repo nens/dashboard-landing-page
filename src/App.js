@@ -63,6 +63,7 @@ class App extends Component {
         logo: dashboardJsonObj.json.configuration.meta.logo,
         logoCompanies: dashboardJsonObj.json.configuration.meta.logoCompanies,
         slug: dashboardJsonObj.slug,
+        isPublic: dashboardJsonObj.json.configuration.isPublic
       }
     })
   }
@@ -254,7 +255,7 @@ class App extends Component {
                     {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
                   </div>
                   <div className="Info">
-                    <h2>{dashboard.title || ""}</h2>
+                    <h2>{dashboard.title || ""}&nbsp;{dashboard.isPublic !== true && this.state.user.authenticated !== true ? ( <i title="login required" className="fa fa-lock" />): ""}</h2>
                     <p>{dashboard.description || ""}</p>
                     <div  className="MetaTags">
                       <div>{dashboard.tags || ""}</div>
