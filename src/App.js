@@ -249,7 +249,7 @@ class App extends Component {
               return (
                 <a 
                   className="Dashboard"
-                  href={dashboard.slug.url}
+                  href={dashboard.slug.client_config_url}
                 >
                   <div className="Logo">
                     {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
