@@ -97,7 +97,7 @@ class App extends Component {
         //     ],
         // })
 
-        fetch( "/api/v4/clientconfigurations/?portal__domain="+ window.location.hostname)
+        fetch( "/api/v4/clientconfigurations/?page_size=1000&portal__domain="+ window.location.hostname)
         .then(function(response) {
           return response.json();
         })
