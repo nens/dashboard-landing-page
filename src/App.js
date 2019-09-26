@@ -166,6 +166,9 @@ class App extends Component {
 
     return (
       <div className="App">
+        <div className="background-box">
+          <img src="/achtergrond-landing.svg" alt="background image" className="background-image"/>
+        </div>
 
         <header>
           <div>
