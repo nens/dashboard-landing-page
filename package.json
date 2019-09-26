@@ -1,6 +1,6 @@
 {
   "name": "dashboard-landing-page",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "homepage": "/dashboards",
   "private": true,
   "dependencies": {
