@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
 import MDSpinner from "react-md-spinner";
 
-import logo from './logo.svg';
+import backgroundImage from './background.svg';
 import './App.css';
 import { addGetParameter } from './urls';
 
@@ -167,7 +167,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="background-box">
-          <img src="/achtergrond-landing.svg" alt="background image" className="background-image"/>
+          <img src={backgroundImage} alt="background image" className="background-image"/>
         </div>
 
         <header>
