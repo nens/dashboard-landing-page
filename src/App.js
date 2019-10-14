@@ -75,28 +75,6 @@ class App extends Component {
         fetchSlugs: "SEND",
       },
       () => {
-        // that.setState({
-        //   fetchSlugs: "RECEIVED",
-        //   clientConfigurations: [
-        //       {
-        //         client_slug: "dashboard2",
-        //         url: "https://nxt3.staging.lizard.net/dashboard/dashboard2",
-        //       },
-        //       {
-        //         client_slug: "dashboard",
-        //         url: "https://nxt3.staging.lizard.net/dashboard/dashboard",
-        //       },
-        //       {
-        //         client_slug: "tom1",
-        //         url: "https://nxt3.staging.lizard.net/dashboard/tom1",
-        //       },
-        //       {
-        //         client_slug: "scenario7", // this dashboard actually belongs to parramatta. This is to test for errors
-        //         url: "https://nxt3.staging.lizard.net/dashboard/scenario7",
-        //       },
-        //     ],
-        // })
-
         fetch( "/api/v4/clientconfigurations/?page_size=1000&portal__domain="+ window.location.hostname)
         .then(function(response) {
           return response.json();
@@ -167,7 +145,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="background-box">
-          <img src={backgroundImage} alt="background image" className="background-image"/>
+          <img src={backgroundImage} alt="background" className="background-image"/>
         </div>
 
         <header>
@@ -176,6 +154,7 @@ class App extends Component {
             <a className="Back" href="/dashboards">&larr;</a>
             
             {/* user / login */}
+            {/* eslint-disable-next-line */}
             <a
               id="user_dropdown_toggle"
               href="#"
@@ -205,6 +184,7 @@ class App extends Component {
                 <div
                   className="DropdownOpen"
                 >
+                  {/* eslint-disable-next-line */}
                   <a href="#">
                     <i className="fa fa-caret-up" />
                     &nbsp;&nbsp;
@@ -242,20 +222,16 @@ class App extends Component {
           </div>
         </header>
         <body>
-
-        
           <div className="DashboardList">
-            
-            
-            
-            {this.state.dashboardJsons.map(dashboard=>{
+            {this.state.dashboardJsons.map((dashboard, i)=>{
               return (
                 <a 
                   className="Dashboard"
+                  key={i}
                   href={dashboard.slug.client_config_url}
                 >
                   <div className="Logo">
-                    {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)}></img>:null}
+                    {dashboard.logo?<img src={this.getImageUrl(dashboard.logo)} alt="logo"></img>:null}
                   </div>
                   <div className="Info">
                     <h2>{dashboard.title || ""}&nbsp;{dashboard.isPublic !== true && this.state.user.authenticated !== true ? ( <i title="login required" className="fa fa-lock" />): ""}</h2>
@@ -266,11 +242,10 @@ class App extends Component {
                     </div>
                   </div>
                   <div  className="Logo LogoCompany">
-                    {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)}></img>:null}
+                    {dashboard.logoCompanies?<img src={this.getImageUrl(dashboard.logoCompanies)} alt="logo"></img>:null}
                   </div>
                 </a>
               )
-
             })}
             <div 
               className="Spinner"
@@ -302,12 +277,11 @@ class App extends Component {
                 Onze adviseurs kunnen deze tiles naar u wensen configureren.
               </p>
             </article>
-            
             <article>
               <h1>
                 Hoe gebruik ik mijn dashboard?
               </h1>
-              <p>
+              <div>
                 Neem eventueel contact op met de helpdesk. Dit kan namelijk namelijk sterk per dashboard verschillen, maar er zijn een aantal dingen steeds hetzelfde:
                 <ul>
                   <li>Open het dashboard door erop te klikken links in dit scherm.</li>
@@ -315,9 +289,8 @@ class App extends Component {
                   <li>In zowel map als chart tiles kunt u zoomen en pannen met de muis.</li>
                   <li>Op een kaart kunt u bepaalde elementen aanklikken om de waarde te tonen.</li>
                 </ul>
-              </p>
+              </div>
             </article>
-            
           </div>
         </body>
       </div>
