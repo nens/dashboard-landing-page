@@ -166,7 +166,6 @@ body,
   min-width: 100px;
   flex-grow: 1;
   flex-shrink: 0;
-
 }
 
 .Dashboard .Info h2 {
@@ -196,6 +195,8 @@ body,
   border-radius: 5px;
   height: 80vh;
   top: 4rem;
+  overflow: hidden;
+  border-bottom: 20px solid transparent;
 }
 
 .App .ExplainColumn article {
@@ -206,4 +207,74 @@ body,
 
 .App .ExplainColumn article h1 {
   margin-top: 0;
+}
+
+.ShortTitle {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .App header {
+    padding: 0 20px;
+  }
+
+  .App body {
+    padding: 20px;
+  }
+
+  .App header > div:nth-child(1) {
+    margin-right: 30px;
+  }
+
+  .App header div a {
+    font-size: 1rem;
+  }
+
+  .App header .Dropdown .DropdownOpen .DropDownContent {
+    left: 14px;
+  }
+
+  .ExplainColumn {
+    display: none;
+  }
+
+  .DashboardList {
+    width: 95%;
+  }
+
+  .Dashboard {
+    padding: 20px 10px;
+  }
+
+  .FullTitle {
+    display: none;
+  }
+
+  .ShortTitle {
+    display: block;
+  }
+
+  .Dashboard .Logo {
+    padding: 10px;
+  }
+
+  .Dashboard .Logo.LogoCompany {
+    display: none;
+  }
+
+  .Dashboard .Info {
+    font-size: 12px;
+    max-width: 70%;
+    max-height: 310px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .Dashboard .Info p {
+    max-height: 60%;
+  }
+
+  .Spinner {
+    height: 70vh;
+  }
 }
