@@ -265,7 +265,7 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="ExplainColumn">
+          {/* <div className="ExplainColumn">
             <article>
               <h1>
                 Wat is een dashboard?
@@ -292,7 +292,7 @@ class App extends Component {
                 </ul>
               </div>
             </article>
-          </div>
+          </div> */}
         </body>
       </div>
     )
