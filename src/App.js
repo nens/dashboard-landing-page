@@ -218,7 +218,7 @@ class App extends Component {
             }
           </div>
           <div>
-            <h1 className="FullTitle">Mijn Dashboards</h1>
+            <h1 className="FullTitle">Dashboards</h1>
             <h1 className="ShortTitle">Dashboards</h1>
           </div>
         </header>
