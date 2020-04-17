@@ -1,3 +1,5 @@
+## ! This project  was deprecated and instead the functionality was moved intoo the lizard-tile-dashboard
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 Under the header "Create React App" is all information regarding "Create React App".
 Above that is all information specific to this repo.
